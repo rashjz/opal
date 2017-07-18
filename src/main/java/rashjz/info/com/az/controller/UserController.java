@@ -6,11 +6,7 @@
 package rashjz.info.com.az.controller;
 
 import java.awt.image.BufferedImage;
-import java.awt.image.DataBufferByte;
-import java.beans.PropertyEditorSupport;
-import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.IOException;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -30,7 +26,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.ServletRequestDataBinder;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -40,7 +35,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import rashjz.info.com.az.AdminController.ProductControllerAdmin;
+
 import static rashjz.info.com.az.controller.ProfileController.getExt;
 import rashjz.info.com.az.domain.AppUser;
 import rashjz.info.com.az.domain.PagingResult;
@@ -49,7 +44,6 @@ import rashjz.info.com.az.entity.Category;
 import rashjz.info.com.az.entity.Gender;
 import rashjz.info.com.az.entity.ProductImage;
 import rashjz.info.com.az.entity.Products;
-import rashjz.info.com.az.entity.Users;
 import rashjz.info.com.az.service.BrandCategoryService;
 import rashjz.info.com.az.service.CategoryService;
 import rashjz.info.com.az.service.GenderCategoryServise;
@@ -57,7 +51,6 @@ import rashjz.info.com.az.service.ProductImagesService;
 import rashjz.info.com.az.service.ProductService;
 import rashjz.info.com.az.util.AuthoritiesConverter;
 import rashjz.info.com.az.util.ImageCompressor;
-import rashjz.info.com.az.util.SecurityUtil;
 import rashjz.info.com.az.util.StaticParams;
 
 /**
