@@ -1,7 +1,5 @@
 /target/
 .idea/
 lib/
-out/artifacts/HandWork_war_exploded/WEB-INF/
-out/artifacts/HandWork_war_exploded/resources/
-out/artifacts/HandWork_war_exploded/web-inf/
+out/
 src/test/
