@@ -58,7 +58,7 @@ public class HibernateConfiguration {
         properties.put("hibernate.format_sql", environment.getRequiredProperty("hibernate.format_sql"));
         properties.put("current_session_context_class", "thread");
         properties.put("hibernate.enable_lazy_load_no_trans", "true");
-
+        //properties.put("hibernate.hbm2ddl.auto", "create-drop");
 //        enable second level cache and query cache
 //        properties.put("hibernate.cache.region.factory_class", "org.hibernate.cache.ehcache.EhCacheRegionFactory");
         properties.put("hibernate.cache.region.factory_class", "org.hibernate.cache.ehcache.SingletonEhCacheRegionFactory");
