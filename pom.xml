@@ -27,7 +27,7 @@
         <jackson.version>2.6.3</jackson.version>
         <maven.compiler.source>1.7</maven.compiler.source>
         <maven.compiler.target>1.7</maven.compiler.target>
-        <org.hibernate.version>5.0.2.Final</org.hibernate.version>
+        <org.hibernate.version>5.2.2.Final</org.hibernate.version>
     </properties>
 
     <dependencies>
