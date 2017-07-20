@@ -10,7 +10,8 @@ import java.util.Date;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import org.apache.log4j.Logger; 
+
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -33,7 +34,6 @@ import rashjz.info.com.az.service.ProductService;
 import rashjz.info.com.az.util.AuthoritiesConverter;
 
 /**
- *
  * @author Rashad Javadov
  */
 @Controller
@@ -90,7 +90,7 @@ public class CardController implements Serializable {
         return card;
     }
 
-//    @PreAuthorize("ROLE_ADMIN")
+    //    @PreAuthorize("ROLE_ADMIN")
     @RequestMapping(value = "/addtocard", method = RequestMethod.POST)
     public String getAddToCard(HttpServletRequest request, HttpServletResponse response, Model model) {
         logger.info("---------------- quantity : " + request.getParameter("quantity") + " pId " + request.getParameter("code"));
