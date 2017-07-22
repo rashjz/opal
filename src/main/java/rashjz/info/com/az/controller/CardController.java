@@ -124,21 +124,29 @@ public class CardController implements Serializable {
             return "error";
         }
     }
-    
+
     @RequestMapping(value = "/orderdelivery", method = RequestMethod.POST)
     @ResponseBody
     public String orderDelivery(@RequestBody OrderDelivery delivery) {
         try {
 
             logger.info("orderDelivery method invoked");
-         /*   Users entity = AuthoritiesConverter.getUserObject().getUsers();
+            Users entity = AuthoritiesConverter.getUserObject().getUsers();
+            OrderMessage message = new OrderMessage();
+            message.setName(entity.getUsername());
             message.setUserId(entity);
             message.setInsertDate(new Date());
             message.setStatus("1");
-            logger.info(message.toString());
+            message.setPhone(delivery.getMob1());
+            Products p = new Products();
+            p.setPId(Integer.valueOf(delivery.getOrderId()));
+            message.setPId(p);
+            message.setMessage("Delivery Mobile number 2 : " + delivery.getMob2() + " address: " + delivery.getMetroID());
+
+
+            logger.info("::::: delivery :::::" + delivery.toString());
+
             orderMessageService.persist(message);
-            */
-            logger.info("::::: delivery :::::"+delivery.toString());
             return "success";
         } catch (Exception e) {
             return "error";
