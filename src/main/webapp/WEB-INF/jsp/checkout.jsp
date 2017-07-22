@@ -365,9 +365,12 @@
                 data["mob2"] = mob2;
                 data["orderId"] = orderId;
                 data["metroID"] = metroID;
+
                 if (mob1 === undefined || mob1 === '' || mob1 === null) {
                     datavalidation = false;
                     document.getElementById("helpBlock1").textContent = "Mobil 1 nömrəni daxil edin";
+                }else if (mob1.match(/^\+\d{1,3}-\d{9,10}$/)){
+                    document.getElementById("helpBlock1").textContent = "Mobil 1 düzgün daxil edilməyib";
                 }
                 if (mob2 === undefined || mob2 === '' || mob2 === null) {
                     datavalidation = false;

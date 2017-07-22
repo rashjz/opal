@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import rashjz.info.com.az.domain.EmptyCard;
+import rashjz.info.com.az.domain.OrderDelivery;
 import rashjz.info.com.az.entity.OrderMessage;
 import rashjz.info.com.az.entity.OrderStatus;
 import rashjz.info.com.az.entity.Orders;
