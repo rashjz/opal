@@ -26,7 +26,6 @@
                 border-color: #e81810       !important;
             } 
         </style>
-
     </head>
     <body>
         <jsp:include page="fragment/header.jsp" />
@@ -36,11 +35,10 @@
 
 
 
-        <!--<script src="https://www.2checkout.com/static/checkout/javascript/direct.min.js"></script>-->
         <div class="container">
             <div class="check">	 
                 <div class="col-md-3 cart-total">
-                    <div style=".list-group-item.active {background-color:  red;}" class="list-group"> 
+                    <div style=".list-group-item.active {background-color:  red;}" class="list-group">
                         <!--<a href="checkout?typeId=1" id="shortlink1" data-type="1" class="list-group-item ">Məhsul Əlavə Et<span class="sr-only">(current)</span></a>-->
                         <a href="checkout?typeId=1" id="shortlink1" data-type="1" class="list-group-item ">İcrada<span class="sr-only">(current)</span></a>
                         <a href="checkout?typeId=2" id="shortlink2" data-type="2" class="list-group-item ">Çatdırılıb<span class="sr-only">(current)</span></a>
@@ -58,7 +56,7 @@
                         <!--                        <span>Delivery Charges</span>
                                                 <span class="total1">150.00</span>-->
                         <div class="clearfix"></div>				 
-                    </div>	
+                    </div>
 
                     <ul class="total_price">
                         <li class="last_price"> <h4>TOTAL</h4></li>
@@ -72,33 +70,8 @@
                 </div>
                 <div class="col-md-9 cart-items">
                     <form action='https://2checkout.com/checkout/purchase' method='post'>
-                        <input type='hidden' name='sid' value='1303908' >
-                        <input type='hidden' name='mode' value='2CO' >
-                        <input type='hidden' name='li_0_type' value='product' >
-                        <input type='hidden' name='li_0_name' value='Example Product Name' >
-                        <input type='hidden' name='li_0_product_id' value='Example Product ID' >
-                        <input type='hidden' name='li_0__description' value='Example Product Description' >
-                        <input type='hidden' name='li_0_price' value='1.00' >
-                        <input type='hidden' name='li_0_quantity' value='2' >
-                        <input type='hidden' name='li_0_tangible' value='N' >
-                        <input type='hidden' name='card_holder_name' value='Checkout Shopper' >
-                        <input type='hidden' name='street_address' value='123 Test St' >
-                        <input type='hidden' name='street_address2' value='Suite 200' >
-                        <input type='hidden' name='city' value='Baku' >
-                        <input type='hidden' name='state' value='Baku' >
-                        <input type='hidden' name='zip' value='43228' >
-                        <input type='hidden' name='country' value='AZ' >
-                        <input type='hidden' name='currency_code' value='AZN' >
-                        <input type='hidden' name='email' value='test@2co.com' >
-                        <input type='hidden' name='phone' value='103118881' >
-                        <input type='hidden' name='phone_extension' value='197' >
-                        <input type='hidden' name='purchase_step' value='payment-method' >
-                        <!--<input name='submit' type='submit' value='Checkout' >-->
-                        <!--</form>-->
 
-                        <!--<h1>Səbətim $!{total}</h1>-->
                         <c:forEach items="${orders}" varStatus="i" var="order">
-
 
 
                             <script type="text/javascript">
@@ -171,15 +144,17 @@
                                             <div class="clearfix"></div>
                                         </div>	
                                         <div class="fgh"> 
-<!--                                            <button type="submit"   class="btn btn-primary">
-                                                <span class="glyphicon glyphicon-credit-card"></span> Add To Cart
-                                            </button>-->
+
                                             <a data-toggle="modal" data-id="${order.productId.price}" data-backdrop="static" 
                                                data-keyboard="true" data-target="#myModal" >
                                                 <span class="glyphicon glyphicon-envelope"></span>
-                                            </a> 
+                                            </a>
                                             <a href="<c:url value="view?code=${order.productId.PId}"/>" style="margin-left: 3px;">
                                                 <span class="glyphicon glyphicon-zoom-in"></span>
+                                            </a>
+                                            <a data-toggle="modal" data-id="${order.productId.PId}" data-backdrop="static" style="margin-left: 3px;"
+                                               data-keyboard="true" data-target="#deliveryModal" >
+                                                <span class="glyphicon glyphicon-calendar"></span>
                                             </a>
                                         </div>
                                     </div>
@@ -239,8 +214,59 @@
                     </div>
                 </div>
             </div>
-
         </div>
+
+
+        <!-- Modal Delivery-->
+        <div id="deliveryModal"  tabindex="-1" role="dialog" class="modal fade" >
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Delivery</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-horizontal">
+                            <input type="hidden" name="orderId" id="orderId" value=""/>
+                            <div class="form-group">
+                                <label class="col-xs-3 control-label">Mobile 1</label>
+                                <div class="col-xs-5">
+                                    <input type="text" class="form-control"   placeholder="Telephone" name="mob1" />
+                                </div>
+                                <span id="mobBlock1" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-xs-3 control-label">Mobile 2</label>
+                                <div class="col-xs-5">
+                                    <input type="text" class="form-control"   placeholder="Telephone" name="mob2" />
+                                </div>
+                                <span id="mobBlock2" class="text-danger"></span>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label class="col-xs-3 control-label">Metro Stansiyası</label>
+                                <div class="col-xs-5">
+                                    <select id="metroCombobox" class="selectpicker" data-live-search="true">
+                                        <option value="1">Nizami MS</option>
+                                        <option  value="2">Elmlər MS</option>
+                                        <option value="3">İnşaatçılar MS</option>
+                                    </select>
+                                </div>
+                                <span id="metroBlock" class="text-danger"></span>
+                            </div>
+
+
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-primary" onclick="orderDelivery(this);" >OK</button>
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
 
         <script>
             //setting active to class param to left menu links example 
@@ -256,9 +282,22 @@
             });
 
 
-            $('#myModal').on('hidden.bs.modal', function () {
+            $('#deliveryModal').on('show.bs.modal', function (e) {
+                //get data-id attribute of the clicked element
+                $(e.currentTarget).find('span').text('');
+                //empty span elements
+                var mdataId = $(e.relatedTarget).data('id');
+                $(e.currentTarget).find('input[name="orderId"]').val(mdataId);
+            });
+
+           $('#myModal').on('hidden.bs.modal', function () {
                 $.clearFormFields(this);
             });
+            $('#deliveryModal').on('hidden.bs.modal', function () {
+                $.clearFormFields(this);
+            });
+
+
             $.clearFormFields = function (area) {
                 $(area).find('input[type="text"],input[type="email"],textarea,select').val('');
             };
@@ -279,11 +318,11 @@
                 data["name"] = name;
                 if (name === undefined || name === '' || name === null) {
                     datavalidation = false;
-                    document.getElementById("helpBlock1").textContent = "Adınızı daxil edin";
+                    document.getElementById("mobBlock1").textContent = "Adınızı daxil edin";
                 }
                 if (phone === undefined || phone === '' || phone === null) {
                     datavalidation = false;
-                    document.getElementById("helpBlock2").textContent = "Mobil nömrəni daxil edin";
+                    document.getElementById("mobBlock2").textContent = "Mobil nömrəni daxil edin";
                 }
                 if (message === undefined || message === '' || message === null) {
                     datavalidation = false;
@@ -294,6 +333,55 @@
                     $.ajax({
                         type: "post",
                         url: "ordermessage",
+                        contentType: 'application/json',
+                        data: JSON.stringify(data),
+                        success: function (data) {
+                            $("[data-dismiss=modal]").trigger({type: "click"});
+                        },
+                        error: function (callback) {
+                            console.log(callback);
+                        },
+                        done: function (e) {
+                            console.log("DONE");
+                        }
+                    });
+                }
+
+            }
+
+
+
+
+            function orderDelivery() {
+                var datavalidation = true;
+                var data = {};
+
+                var mob1 = $("input[name=mob1]").val();
+                var mob2 = $("input[name=mob2]").val();
+               var metroID =  $('#metroCombobox').val();
+                var orderId = $("input[name=orderId]").val();
+                console.log(mob1 + ' ' + mob2 + ' ' + metroID + ' ' + orderId);
+                data["mob1"] = mob1;
+                data["mob2"] = mob2;
+                data["orderId"] = orderId;
+                data["metroID"] = metroID;
+                if (mob1 === undefined || mob1 === '' || mob1 === null) {
+                    datavalidation = false;
+                    document.getElementById("helpBlock1").textContent = "Mobil 1 nömrəni daxil edin";
+                }
+                if (mob2 === undefined || mob2 === '' || mob2 === null) {
+                    datavalidation = false;
+                    document.getElementById("helpBlock2").textContent = "Mobil 2 nömrəni daxil edin";
+                }
+                if (metroID === undefined || metroID === '' || metroID === null) {
+                    datavalidation = false;
+                    document.getElementById("metroBlock").textContent = "Metro daxil edin";
+                }
+
+                if (datavalidation) {
+                    $.ajax({
+                        type: "post",
+                        url: "orderdelivery",
                         contentType: 'application/json',
                         data: JSON.stringify(data),
                         success: function (data) {
