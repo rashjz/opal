@@ -11,6 +11,18 @@ package rashjz.info.com.az.util;
  */
 public class StaticParams {
 
-//    public static String UPLOAD_LOCATION = "/home/rashad/uploads/";
-    public static String UPLOAD_LOCATION =  "/D:/uploads/";  //fileI/ other location just D
+
+    public static String WINDOWS_LOCATION = "D://uploads/";  //fileI/ other location just D
+    public static String LINUX_LOCATION = "/home/rashad/uploads/";  //fileI/ other location just D
+    public static String OS = "Windows 10";
+
+    public static String getUploadLocation() {
+        if ((OS).equalsIgnoreCase(System.getProperty("os.name"))) {
+            return WINDOWS_LOCATION;
+        } else {
+            return LINUX_LOCATION;
+        }
+
+    }
+
 }
