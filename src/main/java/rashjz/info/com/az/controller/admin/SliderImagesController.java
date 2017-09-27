@@ -58,7 +58,7 @@ public class SliderImagesController implements Serializable{
             try {
                 if (file != null && !file.isEmpty()) {
                     String fileName = UUID.randomUUID().toString() + "." + getExt(file.getOriginalFilename());
-                    FileCopyUtils.copy(file.getBytes(), new File(StaticParams.UPLOAD_LOCATION + fileName));
+                    FileCopyUtils.copy(file.getBytes(), new File(StaticParams.getUploadLocation() + fileName));
                     //update userimage 
                     System.out.println("azer---------------- 1");  
                     SliderImage image = new SliderImage();

@@ -270,7 +270,7 @@ public class ProductControllerAdmin implements Serializable {
                     File f = new File(fileName);
                     ImageIO.write(img, "jpg", f);
 
-                    FileCopyUtils.copy(f, new File(StaticParams.UPLOAD_LOCATION + fileName));
+                    FileCopyUtils.copy(f, new File(StaticParams.getUploadLocation() + fileName));
                     //update userimage 
                     ProductImage image = new ProductImage();
                     Products p = new Products();

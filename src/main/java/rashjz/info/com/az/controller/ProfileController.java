@@ -109,7 +109,7 @@ public class ProfileController implements Serializable {
         try {
             if (file != null && !file.isEmpty()) {
                 String fileName = UUID.randomUUID().toString() + "." + getExt(file.getOriginalFilename());
-                FileCopyUtils.copy(file.getBytes(), new File(StaticParams.UPLOAD_LOCATION + fileName));
+                FileCopyUtils.copy(file.getBytes(), new File(StaticParams.getUploadLocation() + fileName));
                 //update userimage 
                 Users users = AuthoritiesConverter.getUserObject().getUsers();
                 //uploads -  url that will get image folder from mvc resources

@@ -290,7 +290,7 @@ public class UserController implements Serializable {
                     File f = new File(fileName);
                     ImageIO.write(img, "jpg", f);
 
-                    FileCopyUtils.copy(f, new File(StaticParams.UPLOAD_LOCATION + fileName));
+                    FileCopyUtils.copy(f, new File(StaticParams.getUploadLocation() + fileName));
 
 //replace with imageBytes - file.getBytes()
                     //update userimage 
