@@ -150,7 +150,6 @@ public class UserController implements Serializable {
                 filters.put("price", products.getPrice());
                 model.addAttribute("price", products.getPrice());
             }else if(price!=null){
-                System.out.println("---"+price);
                 filters.put("price", price);
             }
             if (products.getCategoryId() != null && !products.getCategoryId().equals("") && products.getCategoryId().getCatId() != 0) {

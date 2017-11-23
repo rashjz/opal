@@ -5,6 +5,7 @@
  */
 package rashjz.info.com.az.controller;
 
+import static com.sun.corba.se.impl.util.Utility.printStackTrace;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -45,6 +46,7 @@ public class CardController implements Serializable {
     OrderService orderService;
     @Autowired
     OrderMessageService orderMessageService;
+ 
     @Autowired
     private ProductService productService;
 
@@ -133,22 +135,31 @@ public class CardController implements Serializable {
             logger.info("orderDelivery method invoked");
             Users entity = AuthoritiesConverter.getUserObject().getUsers();
             OrderMessage message = new OrderMessage();
-            message.setName(entity.getUsername());
-            message.setUserId(entity);
-            message.setInsertDate(new Date());
-            message.setStatus("1");
-            message.setPhone(delivery.getMob1());
+            Orders s=new Orders();
+            OrderStatus status=new OrderStatus();
             Products p = new Products();
             p.setPId(Integer.valueOf(delivery.getOrderId()));
-            message.setPId(p);
-            message.setMessage("Delivery Mobile number 2 : " + delivery.getMob2() + " address: " + delivery.getMetroID());
-
-
-            logger.info("::::: delivery :::::" + delivery.toString());
-
-            orderMessageService.persist(message);
+            status.setId(5);
+            s.setUserId(entity);
+//            s.setFromDate(new Date());
+            s.setInsertDate(new Date());
+            s.setStatusId(status);
+            s.setProductId(p);
+//            message.setName(entity.getUsername());
+//            message.setUserId(entity);
+//            message.setInsertDate(new Date());
+//            message.setStatus("1");
+//            message.setPhone(delivery.getMob1());
+//           
+//            message.setPId(p);
+//            message.setMessage("Delivery Mobile number 2 : " + delivery.getMob2() + " address: " + delivery.getMetroID());
+//
+//
+//            logger.info("::::: delivery :::::" + delivery.toString());
+            orderService.persist(s);
             return "success";
         } catch (Exception e) {
+            System.out.println(e);
             return "error";
         }
     }

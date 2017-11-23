@@ -106,7 +106,6 @@ public class BrandControllerAdmin {
     public String EditBrand(@PathVariable("id") int Id, Model model ) {
         logger.info("showBrand id: {}" + Id);
         Brand brand = brandCategoryService.getByKey(Id);
-        System.out.println("showCustomers xxxxxxxxxxxxx" + brand.toString());
         model.addAttribute("brand", brand);
         return "admin/editBrand";
     }
@@ -129,7 +128,7 @@ public class BrandControllerAdmin {
         brandCategoryService.delete(brand);
         redirectAttributes.addFlashAttribute("css", "success");
         redirectAttributes.addFlashAttribute("msg", "Brand is deleted!");
-        return "redirect:/admin/brand";
+        return "redirect:/admin/brands";
 
     }
 

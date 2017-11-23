@@ -15,9 +15,10 @@ import javax.servlet.jsp.tagext.SimpleTagSupport;
  * @author Azik
  */
 public class OrderPaginationTag extends SimpleTagSupport{
+    private String url;
    private String uri;
     private String keyValue;
-    private String username;
+    private String orderUsername;
 //    private String firstname;
 //    private String lastname;
     private String productId;
@@ -25,10 +26,10 @@ public class OrderPaginationTag extends SimpleTagSupport{
     private String statusId;
     private String toDate;
     private String fromDate;
-    private int offset;
-    private int count;
-    private int max = 10;
-    private int steps = 10;
+    private Integer offset;
+    private Integer count;
+    private Integer max = 3;
+    private Integer steps = 3;
     private String previous = "Previous";
     private String next = "Next";
     
@@ -53,9 +54,9 @@ public class OrderPaginationTag extends SimpleTagSupport{
 
             for (int itr = 0; itr < count; itr += steps) {
                 if (offset == itr) {
-                    out.write(constructLink((itr / 10 + 1) - 1 * steps, String.valueOf(itr / 10 + 1), "active", true));
+                    out.write(constructLink((itr / 3 + 1) - 1 * steps, String.valueOf(itr / 3 + 1), "active", true));
                 } else {
-                    out.write(constructLink(itr / 10 * steps, String.valueOf(itr / 10 + 1), null, false));
+                    out.write(constructLink(itr / 3 * steps, String.valueOf(itr / 3 + 1), null, false));
                 }
             }
 
@@ -82,7 +83,31 @@ public class OrderPaginationTag extends SimpleTagSupport{
         if (disabled) {
             link.append(">").append("<a href=\"#\">" + text + "</a></li>");
         } else {
-            link.append(">").append("<a href=\"" + uri + "?offset=" + page + "&&keyValue=" + keyValue+ "&&username=" + username +  "&&productId=" + productId + "&&countOrder=" + countOrder +  "&&statusId=" + statusId +"&&toDate=" + toDate + "&&fromDate=" + fromDate + "\">" + text + "</a></li>");
+            url="<a href=\"" + uri + "?offset=" + page + "&&keyValue=" + keyValue;
+            if(statusId!=null){
+                url=url+"&&statusId.Id=" + statusId;
+            }
+            if(orderUsername!=null && !orderUsername.equals("")){
+                
+               url=url+"&&orderUsername=" + orderUsername;
+            }
+            if(productId!=null){
+                url=url+"&&product=" + productId;
+            }
+            if(toDate!=null && !toDate.equals("")){
+                url=url+"&&toDate=" + toDate;
+            }
+            if(fromDate!=null && !fromDate.equals("")){
+                url=url+"&&fromDate=" + fromDate;
+            }
+            if(countOrder!=null && !countOrder.equals("")){
+                url=url+"&&count=" + countOrder;
+            }     
+            url=url+"\">" + text + "</a></li>";
+            link.append(">").append(url);
+            
+            
+//            link.append(">").append("<a href=\"" + uri + "?offset=" + page + "&&keyValue=" + keyValue+ "&&username=" + username +  "&&statusId=" + statusId +"&&toDate=" + toDate + "&&fromDate=" + fromDate + "\">" + text + "</a></li>");
         }
         return link.toString();
     }
@@ -103,12 +128,12 @@ public class OrderPaginationTag extends SimpleTagSupport{
         this.keyValue = keyValue;
     }
 
-    public String getUsername() {
-        return username;
+    public String orderUsername() {
+        return orderUsername;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setOrderUsername(String orderUsername) {
+        this.orderUsername = orderUsername;
     }
 
 //    public String getFirstname() {

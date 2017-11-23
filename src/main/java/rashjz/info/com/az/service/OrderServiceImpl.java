@@ -81,12 +81,12 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public PagingResult lazyLoadOrders(int first, int pageSize, String sortField, SortOrder sortOrder, Map<String, Object> filters) {
+    public PagingResultOrder lazyLoadOrders(int first, int pageSize, String sortField, SortOrder sortOrder, Map<String, Object> filters) {
        return orderDao.lazyLoadOrders(first, pageSize, sortField, sortOrder, filters);
     }
 
     @Override
-    public Number lazyLoadOrdersCount(int first, int pageSize, String sortField, SortOrder sortOrder, Map<String, Object> filters, PagingResult pagingResult) {
+    public Number lazyLoadOrdersCount(int first, int pageSize, String sortField, SortOrder sortOrder, Map<String, Object> filters, PagingResultOrder pagingResult) {
        return orderDao.lazyLoadOrdersCount(first, pageSize, sortField, sortOrder, filters, pagingResult);
     }
 

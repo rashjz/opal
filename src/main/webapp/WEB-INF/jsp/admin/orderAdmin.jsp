@@ -32,10 +32,10 @@
                                             
                                             <form:hidden path="statusId.Id"/>
                                                 <div class="col-sm-4 col-md-4 col-lg-4"> 
-                                                    <%--<form:input path="userId.username" type="text" class="form-control" id="userId.username" placeholder="Username"/>--%>
+                                                    <form:input path="userId.username" type="text" class="form-control" id="userId.username" placeholder="Username"/>
                                                 </div>                                                                                                                               
                                                 <div class="col-sm-4 col-md-4 col-lg-4"> 
-                                                    <%--<form:input path="productId.title" type="text" class="form-control" id="productId.title" placeholder="Enter Product"/>--%>
+                                                    <form:input path="productId.title" type="text" class="form-control" id="productId.title" placeholder="Enter Product"/>
                                                 </div>                                                                                        
                                                 <div class="col-sm-4 col-md-4 col-lg-4"> 
                                                     <form:input path="count" type="text" class="form-control" id="count" placeholder="Enter Count"/>
@@ -110,7 +110,7 @@
                                 </div>
                             </div>
                             <div style="margin-left: 10px;margin-top: 10px;" class="panel"> 
-                                <tag:paginate max="15" offset="${o+ffset}"  count="${count}" uri="checkoutList"    username="${userId.username}"  countOrder="${countOrder}"  toDate="${toDate}"  fromDate="${fromDate}" next="&raquo;" previous="&laquo;" />
+                                <tag:paginate max="15" offset="${offset}" count="${count}" statusId="${statusId}"   orderUsername="${orderUsername}"   toDate="${toDate}"  fromDate="${fromDate}"  uri="checkoutList" keyValue="${keyValue}" next="&raquo;" previous="&laquo;" />
                             </div>
                         </div>
                     </div>

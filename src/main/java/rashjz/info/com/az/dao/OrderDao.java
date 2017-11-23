@@ -40,7 +40,7 @@ public interface OrderDao {
 
     public List<Orders> getAll(Class<Orders> type);
     
-    public PagingResult lazyLoadOrders(int first, int pageSize,
+    public PagingResultOrder lazyLoadOrders(int first, int pageSize,
             String sortField,
             SortOrder sortOrder,
             Map<String, Object> filters);
@@ -48,6 +48,6 @@ public interface OrderDao {
     public Number lazyLoadOrdersCount(int first, int pageSize,
             String sortField,
             SortOrder sortOrder,
-            Map<String, Object> filters, PagingResult pagingResult);
+            Map<String, Object> filters, PagingResultOrder pagingResult);
 
 }

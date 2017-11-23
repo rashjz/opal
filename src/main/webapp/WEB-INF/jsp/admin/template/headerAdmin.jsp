@@ -34,7 +34,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="/index"><i class="fa fa-gear"></i> <strong>OPAL.AZ</strong></a>
+                <a class="navbar-brand" href="${pageContext.request.contextPath}/index"><i class="fa fa-gear"></i> <strong>OPAL.AZ</strong></a>
             </div>
 
             <ul class="nav navbar-top-links navbar-right">
@@ -49,7 +49,7 @@
                     <ul class="dropdown-menu dropdown-messages">
                         <c:forEach items="${newMessageList}" var="msj">
                         <li>
-                            <a href="${pageContext.request.contextPath}/userListMassage/${msj.userId.userId}/${msj.PId.PId}">
+                            <a href="${pageContext.request.contextPath}/admin/userListMassage/${msj.userId.userId}/${msj.PId.PId}">
                                 <div>
                                     <strong>${msj.userId.firstname} ${msj.userId.lastname}</strong>
                                     <span class="pull-right text-muted">

@@ -121,8 +121,8 @@ public class OrderImpl extends AbstractDao<Integer, Orders> implements Serializa
     }
 
     @Override
-    public PagingResult lazyLoadOrders(int first, int pageSize, String sortField, SortOrder sortOrder, Map<String, Object> filters) {
-        PagingResult result = new PagingResult();
+    public PagingResultOrder lazyLoadOrders(int first, int pageSize, String sortField, SortOrder sortOrder, Map<String, Object> filters) {
+        PagingResultOrder result = new PagingResultOrder();
         LOG.info("first " + first + " pageSize " + pageSize + " sortField " + sortField + " SortOrder " + sortOrder);
         Transaction trns = null;
         Session session = getSession();
@@ -139,7 +139,6 @@ public class OrderImpl extends AbstractDao<Integer, Orders> implements Serializa
                     }else if (entry.getKey().equals("productId")) {
                         crit.createCriteria("o.productId", "productId", JoinType.INNER_JOIN, Restrictions.like("title", entry.getValue().toString(), MatchMode.ANYWHERE));
                     } else if (entry.getKey().equals("count")) {
-                         System.out.println("00000000000000"+entry.getValue());
                         crit.add(Restrictions.eq(entry.getKey(), entry.getValue()));
                     } else if (entry.getKey().equals("statusId")) {
                         crit.createCriteria("o.statusId", "statusId", JoinType.INNER_JOIN, Restrictions.eq("id", entry.getValue()));
@@ -161,7 +160,7 @@ public class OrderImpl extends AbstractDao<Integer, Orders> implements Serializa
     }
 
     @Override
-    public Number lazyLoadOrdersCount(int first, int pageSize, String sortField, SortOrder sortOrder, Map<String, Object> filters, PagingResult pagingResult) {
+    public Number lazyLoadOrdersCount(int first, int pageSize, String sortField, SortOrder sortOrder, Map<String, Object> filters, PagingResultOrder pagingResult) {
         PagingResultOrder result = new PagingResultOrder();
         LOG.info("first " + first + " pageSize " + pageSize + " sortField " + sortField + " SortOrder " + sortOrder);
         Transaction trns = null;

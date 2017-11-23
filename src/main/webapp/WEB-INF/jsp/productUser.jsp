@@ -146,6 +146,7 @@
 
                     </c:forEach>
                     <div style="margin-left: 10px;margin-top: 10px;" class="panel"> 
+                        
                         <tag:paginate max="15" offset="${offset}"  count="${count}" title="${title}" price="${price}" toDate="${toDate}"  fromDate="${fromDate}" catgs="${catgs}" brands="${brands}" gendertype="${gendertype}" uri="productsuser"  keyValue="${keyValue}" next="&raquo;" previous="&laquo;" />
                     
                 </div>

@@ -46,7 +46,6 @@ public class OrderMessageController implements Serializable {
         List<OrderMessage> unreadMessageList = orderMessageService.getMessageList("1");
 //        long listMessage = orderMessageService.getMessageListCount("1");
 //        List<OrderMessage> newMessageList = orderMessageService.getMessageList("1");
-//        System.out.println("------------------ 9999999999999999 "+newMessageList);
 //         model.addAttribute("messageListCount", listMessage);
 //         model.addAttribute("newMessageList", newMessageList);
         model.addAttribute("messageList", messageList);
@@ -62,7 +61,6 @@ public class OrderMessageController implements Serializable {
             Model model) {
 
         List<OrderMessage> userMessageList = orderMessageService.getAllList(userId);
-        System.out.println("-----------------" + userMessageList.size());
         model.addAttribute("userId", userId);
         model.addAttribute("pId", pId);
         model.addAttribute("userMessageList", userMessageList);

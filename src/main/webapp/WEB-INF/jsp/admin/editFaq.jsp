@@ -22,7 +22,7 @@
             <jsp:include page="template/headerAdmin.jsp" />
             <jsp:include page="template/menuAdmin.jsp" />
             <spring:url value="/admin/editFaq" var="actionUrl"/>
-            <spring:url value="/admin/checkoutList" var="action"/>
+            <spring:url value="/admin/faqAdmin" var="action"/>
             <div id="page-wrapper" >
                 <div id="page-inner" >
                     <div class="row" >

@@ -104,8 +104,8 @@ public class UserAdmin implements Serializable{
                 filters.put("enabled", Integer.parseInt(enabled));
             }
         }
-        pagingData = userService.lazyLoadUsers(offset.intValue(), 2, null, SortOrder.UNSORTED, filters);
-        userService.lazyLoadUsersCount(offset.intValue(), 2, null, SortOrder.UNSORTED, filters, pagingData);
+        pagingData = userService.lazyLoadUsers(offset.intValue(), 10, null, SortOrder.UNSORTED, filters);
+        userService.lazyLoadUsersCount(offset.intValue(), 10, null, SortOrder.UNSORTED, filters, pagingData);
         List<Users> listUser=userService.getAllUser();
         model.addAttribute("usersList", pagingData.getList());
         model.addAttribute("count", pagingData.getTotalResult());

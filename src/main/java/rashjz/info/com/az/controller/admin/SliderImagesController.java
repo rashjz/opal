@@ -52,7 +52,6 @@ public class SliderImagesController implements Serializable{
   @RequestMapping(value = "/uploadsliderimagemulti", method = RequestMethod.POST)
     public String doUpload(HttpServletRequest request, HttpServletResponse response,
             @RequestParam("imagefile") List<MultipartFile> multipartFile) {
-       System.out.println("azer----------------");  
         for (MultipartFile file : multipartFile) {
             logger.info("--------------- " + "  file " + file.getOriginalFilename() );
             try {
@@ -60,12 +59,10 @@ public class SliderImagesController implements Serializable{
                     String fileName = UUID.randomUUID().toString() + "." + getExt(file.getOriginalFilename());
                     FileCopyUtils.copy(file.getBytes(), new File(StaticParams.getUploadLocation() + fileName));
                     //update userimage 
-                    System.out.println("azer---------------- 1");  
                     SliderImage image = new SliderImage();
                     //uploads -  url that will get image folder from mvc resources
                     image.setImageName("/uploads/" + fileName);
                     sliderImageService.persist(image);
-                    System.out.println("azer----------------2");  
                 }
             } catch (Exception e) {
                 e.printStackTrace();

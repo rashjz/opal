@@ -70,7 +70,6 @@ public class FaqController implements Serializable{
 
                 redirectAttributes.addFlashAttribute("msg", "Faq updated successfully!");
             }
-            System.out.println("--------- "+faq.getAnswer());
             faqService.AddOrUpdateFaq(faq);
 
             return "redirect:/admin/editFaq/" + faq.getId();
@@ -83,8 +82,6 @@ public class FaqController implements Serializable{
 
         logger.debug("showFaq id: {}"+ Id);
         Faq faq= faqService.getByKey(Id);
-        
-        System.out.println("showCustomers xxxxxxxxxxxxx" + faq.toString());
 
         model.addAttribute("faq", faq);
 

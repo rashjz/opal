@@ -44,21 +44,23 @@
                                     <table class="table table-striped table-bordered table-list">
                                         <thead>
                                             <tr>
-                                                <th><em class="fa fa-cog "></em></th>
+                                                
                                                 <th class="hidden-xs">ID</th>
                                                 <th>Question</th>
+                                                <th><em class="fa fa-cog "></em></th>
                                             </tr> 
                                         </thead>
                                         <c:forEach items="${faqList}" var="ca">
                                             <tbody>
                                                 <tr>
+                                                    
+                                                    <td class="col-sm-1">${ca.id}</td>
+                                                    <td class="col-sm-9">${ca.question}</td>
                                                     <td align="center">
 
                                                         <a href="<c:url value="editFaq/${ca.id}"/>" class="btn btn-info"><em class="fa fa-pencil"></em></a>
                                                         <a href="<c:url value="faq/${ca.id}/delete"/>" class="btn btn-danger"><em class="fa fa-trash"></em></a>
                                                     </td>
-                                                    <td class="col-sm-1">${ca.id}</td>
-                                                    <td class="col-sm-9">${ca.question}</td>
                                                 </tr>                  
                                             </tbody>
                                         </c:forEach>

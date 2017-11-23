@@ -49,27 +49,29 @@
                                     <table class="table table-striped table-bordered table-list">
                                         <thead>
                                             <tr>
-                                                <th><em class="fa fa-cog "></em></th>
+                                                
                                                 <th class="hidden-xs">ID</th>
                                                 <th>Name</th>
                                                 <th>Note</th>
                                                 <th>Insert Date</th>
                                                 <th>status</th>
+                                                <th><em class="fa fa-cog "></em></th>
                                             </tr> 
                                         </thead>
                                         <c:forEach items="${category}" var="ca">
                                             <tbody>
                                                 <tr>
-                                                    <td class="col-sm-2" align="center">
-                                                        <!--<a href="<c:url value="viewCustomers/${cu.id}"/>" class="btn btn-info"><em class="fa fa-search"></em></a>-->
-                                                        <a href="<c:url value="editCategory/${ca.catId}"/>" class="btn btn-info"><em class="fa fa-pencil"></em></a>
-                                                        <a href="<c:url value="category/${ca.catId}/delete"/>" class="btn btn-danger"><em class="fa fa-trash"></em></a>
-                                                    </td>
+                                                    
                                                     <td class="col-sm-1">${ca.catId }</td>
                                                     <td class="col-sm-1">${ca.name }</td>
                                                     <td class="col-sm-5">${ca.note }</td>
                                                     <td class="col-sm-3">${ca.insertDate}</td>
                                                     <td class="col-sm-1">${ca.status }</td>
+                                                    <td class="col-sm-2" align="center">
+                                                        <!--<a href="<c:url value="viewCustomers/${cu.id}"/>" class="btn btn-info"><em class="fa fa-search"></em></a>-->
+                                                        <a href="<c:url value="editCategory/${ca.catId}"/>" class="btn btn-info"><em class="fa fa-pencil"></em></a>
+                                                        <a href="<c:url value="category/${ca.catId}/delete"/>" class="btn btn-danger"><em class="fa fa-trash"></em></a>
+                                                    </td>
                                                 </tr>                  
                                             </tbody>
                                         </c:forEach>

@@ -22,7 +22,7 @@
             <jsp:include page="template/headerAdmin.jsp" />
             <jsp:include page="template/menuAdmin.jsp" />
             <spring:url value="/admin/editBrand" var="actionUrl"/>
-            <spring:url value="/admin/brand" var="action"/>
+            <spring:url value="/admin/brands" var="action"/>
             <div id="page-wrapper" >
                 <div id="page-inner" >
                     <div class="row" >
@@ -59,7 +59,7 @@
 
                                             <form:form class="form-horizontal"  method="POST" modelAttribute="brand" action="${actionUrl}">
 
-                                                <form:hidden path="PId" />
+                                                <form:hidden path="id" />
                                                 <spring:bind path="name">
                                                     <div class=" form-group ${status.error ? 'has-error' : ''}">
 

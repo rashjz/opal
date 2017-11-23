@@ -171,11 +171,9 @@ public class ProductImpl extends AbstractDao<Integer, Products> implements Seria
 
             Criteria crit = session.createCriteria(Products.class, "p");
             crit.setProjection(Projections.rowCount());
-            System.out.println("aaaaaa --------------- 1");
             if (filters != null && !filters.isEmpty()) {
                 Iterator<Map.Entry<String, Object>> iterator = filters.entrySet().iterator();
                 while (iterator.hasNext()) {
-                    System.out.println("aaaaaa --------------- 2");
                     Map.Entry<String, Object> entry = iterator.next();
                     if (entry.getKey().equals("categoryId")) {
                         List<Integer> list = (List<Integer>) entry.getValue();
@@ -213,7 +211,6 @@ public class ProductImpl extends AbstractDao<Integer, Products> implements Seria
         Transaction trns = null;
         Session session = getSession();
         try {
-            System.out.println("aaaaaa --------------- 1");
             Criteria crit = session.createCriteria(Products.class , "p");
             if (filters != null && !filters.isEmpty()) {
                 Iterator<Map.Entry<String, Object>> iterator = filters.entrySet().iterator();
@@ -284,7 +281,6 @@ public class ProductImpl extends AbstractDao<Integer, Products> implements Seria
                     } else if (entry.getKey().equals("brandId")) {
                         crit.createCriteria("p.brandId", "brandId", JoinType.INNER_JOIN, Restrictions.eq("id",entry.getValue()));
                     } else if (entry.getKey().equals("insertUser")) {
-                        System.out.println("aaaaaa  azer azer " +entry.getValue().toString());
                         crit.createCriteria("p.insertUser", "insertUser", JoinType.INNER_JOIN, Restrictions.eq("userId", Integer.valueOf(entry.getValue().toString())));
                     }
                 }

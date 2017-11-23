@@ -85,7 +85,6 @@ public class CategoryController implements Serializable{
         logger.debug("showCustomers id: {}"+ Id);
         Category category= categoryService.getByKey(Id);
         
-        System.out.println("showCustomers xxxxxxxxxxxxx" + category.toString());
 
         model.addAttribute("category", category);
 

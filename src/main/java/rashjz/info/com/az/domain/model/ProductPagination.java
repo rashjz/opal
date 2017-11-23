@@ -82,43 +82,33 @@ public class ProductPagination extends SimpleTagSupport{
             link.append("\"");
         }
         if (disabled) {
-            System.out.println("55555555555555555555555555");
-            System.out.println("text-----"+text);
             link.append(">").append("<a href=\"#\">" + text + "</a></li>");
         } else {
-            System.out.println("2222 "+price+ " "+title+" "+toDate+"f "+gendertype);
             System.out.println(!title.equals(""));
              url="<a href=\"" + uri + "?offset=" + page + "&&keyValue=" + keyValue;
             if(title!=null && !title.equals("")){
                 
                url=url+"&&title=" + title;
-                System.out.println("1");
             }
             if(price!=null){
                 url=url+"&&price=" + price;
-                System.out.println("2");
             }
             if(toDate!=null && !toDate.equals("")){
                 url=url+"&&toDate=" + toDate;
-                System.out.println("3");
             }
             if(fromDate!=null && !fromDate.equals("")){
                 url=url+"&&fromDate=" + fromDate;
-                System.out.println("4");
             }
             if(catgs!=null && !catgs.equals("")){
                 url=url+"&&catgs=" + catgs;
-                System.out.println("5");
             }
             if(brands!=null && !brands.equals("")){
                 url=url+"&&brands=" + brands;
-                System.out.println("6");
             }
             if(gendertype!=null && !gendertype.equals("")){
                 url=url+"&&gender=" + gendertype;
             }
             url=url+"\">" + text + "</a></li>";
-            System.out.println("44444444444444444 "+url);
             link.append(">").append(url);
 //            else{ 
 //            link.append(">").append("<a href=\"").append(uri).append("?offset=").append(page).append("&&keyValue=").append(keyValue).append("&&title=").append(title).append("&&toDate=").append(toDate).append("&&fromDate=").append(fromDate).append("&&catgs=").append(catgs).append("&&brands=").append(brands).append("&&gendertype=").append(gendertype).append("\">").append(text).append("</a></li>");

@@ -28,6 +28,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import rashjz.info.com.az.domain.PagingResult;
+import rashjz.info.com.az.domain.PagingResultOrder;
 import rashjz.info.com.az.entity.OrderStatus;
 import rashjz.info.com.az.entity.Orders;
 import rashjz.info.com.az.service.OrderService;
@@ -67,53 +68,36 @@ public class OrderController implements Serializable {
 
     @RequestMapping(value = "/checkoutList", method = RequestMethod.GET)
     public String getcheckoutPage(Model model,
-            @RequestParam(value = "username", required = false) String username,
+            @RequestParam(value = "orderUsername", required = false) String orderUsername,
 //            @RequestParam(value = "firstname", required = false) String firstname,
 //            @RequestParam(value = "lastname", required = false) String lastname,
-            @RequestParam(value = "productId", required = false) String productId,
-            @RequestParam(value = "countOrder", required = false) String countOrder,
+//            @RequestParam(value = "productId", required = false) String productId,
+//            @RequestParam(value = "countOrder", required = false) String countOrder,
             @RequestParam(value = "statusId", required = false) Integer statusId,
             @RequestParam(value = "toDate", required = false) String toDate,
             @RequestParam(value = "fromDate", required = false) String fromDate,
             @ModelAttribute("order") Orders order, Integer offset, Integer maxResults, BindingResult result) {
-        System.out.println("====1");
         if (SecurityContextHolder.getContext().getAuthentication().getPrincipal().equals("anonymousUser")) {
-           System.out.println("====2");
             return "redirect:/login";
 
         } else if (result.hasErrors()) {
-            System.out.println("====31");
             System.out.println(result.getFieldError().getDefaultMessage());
-
         } else {
-          System.out.println("====4");
             Map<String, Object> filters = new HashMap<>();
             filters.put("", 0);
             if (result.hasErrors()) {
-                System.out.println("xxxxx " + result.getFieldError().getDefaultMessage());
                 return "login";
             }
-            System.out.println("====5");
             if (order == null) {
                 order = new Orders();
             }
-            PagingResult pagingData = new PagingResult();
+            PagingResultOrder pagingData = new PagingResultOrder();
             if (offset == null) {
                 offset = 0;
             }
             if (offset != null) {//new or old
-                System.out.println("====6");
 //            filters.put("typeId", "1");
-                if (order.getUserId() != null && !order.getUserId().equals("")) {
-                    if (order.getUserId().getUsername() != null && !order.getUserId().getUsername().equals("")) {
-                        System.out.println("777777777");
-                        filters.put("username", order.getUserId().getUsername());
-                        model.addAttribute("username", order.getUserId().getUsername());
-                    }
-                } 
-                else if (username != null) {
-                    filters.put("username", username);
-                }
+               
 //                if (order.getUserId() != null && !order.getUserId().equals("")) {
 //                    if (order.getUserId().getFirstname() != null && !order.getUserId().getFirstname().equals("")) {
 //                        filters.put("firstname", order.getUserId().getFirstname());
@@ -132,21 +116,31 @@ public class OrderController implements Serializable {
 //                else if (lastname != null) {
 //                    filters.put("lastname", lastname);
 //                }
-                if (order.getProductId() != null && !order.getProductId().equals("")) {
-                    if(order.getProductId().getTitle() != null && !order.getProductId().getTitle().equals("")){
-                    filters.put("productId", order.getProductId().getTitle());
-//                    model.addAttribute("productId", order.getProductId().getTitle());
+//                if (order.getProductId() != null && !order.getProductId().equals("")) {
+//                    if(order.getProductId().getTitle() != null && !order.getProductId().getTitle().equals("")){
+//                    filters.put("productId", order.getProductId().getTitle());
+////                    model.addAttribute("productId", order.getProductId().getTitle());
+//                    }
+//                } 
+//                else if (productId != null) {
+//                    filters.put("productId", productId);
+//                }
+//                if (order.getCount() != null && !order.getCount().equals("")) {
+//                    filters.put("count", order.getCount());
+//                    model.addAttribute("countOrder", order.getCount());
+//                } 
+//                else if (countOrder != null) {
+//                    filters.put("count", countOrder);
+//                }
+                if (order.getUserId() != null && !order.getUserId().equals("")) {
+                    if (order.getUserId().getUsername() != null && !order.getUserId().getUsername().equals("")) {
+                        filters.put("orderUsername", order.getUserId().getUsername());
+                        model.addAttribute("orderUsername", order.getUserId().getUsername());
                     }
                 } 
-                else if (productId != null) {
-                    filters.put("productId", productId);
-                }
-                if (order.getCount() != null && !order.getCount().equals("")) {
-                    filters.put("count", order.getCount());
-                    model.addAttribute("countOrder", order.getCount());
-                } 
-                else if (countOrder != null) {
-                    filters.put("count", countOrder);
+                else if (orderUsername != null ) {
+                    System.out.println("xxxxxxxxxxxxxxxxxxxxxxxxxxx"+orderUsername);
+                    filters.put("orderUsername", orderUsername);
                 }
                 if (order.getStatusId() != null && !order.getStatusId().equals("")) {
                     filters.put("statusId", order.getStatusId().getId());
@@ -177,20 +171,13 @@ public class OrderController implements Serializable {
                         e.printStackTrace();
                     }
                 }
-                System.out.println("====7");
             }
-            pagingData = orderService.lazyLoadOrders(offset.intValue(), 10, null, SortOrder.UNSORTED, filters);
-            System.out.println("====8");
-            orderService.lazyLoadOrdersCount(offset.intValue(), 10, null, SortOrder.UNSORTED, filters, pagingData);
-            System.out.println("====9");
+            pagingData = orderService.lazyLoadOrders(offset.intValue(), 3, null, SortOrder.UNSORTED, filters);
+            orderService.lazyLoadOrdersCount(offset.intValue(), 3, null, SortOrder.UNSORTED, filters, pagingData);
             model.addAttribute("orderList", pagingData.getList());
-            System.out.println("====10");
             model.addAttribute("count", pagingData.getTotalResult());
-            System.out.println("====11");
             model.addAttribute("orderadmin", order);
-            System.out.println("====12");
             model.addAttribute("offset", offset);
-            System.out.println("====13");
         }
         return "admin/orderAdmin";
     }
